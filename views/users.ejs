@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	</head>
+<body>
+	<% for(let i = 0; i < users.length; i++) { %>
+		<li>User: <%= i + 1 %></li>
+		<ul>
+     		<li>First name: <%= users[i].firstname %></li>
+     		<li>Last name: <%= users[i].lastname %></li>
+     		<li>Email: <%= users[i].email %></li>
+   		</ul>
+	<% }  %>
+</body>
+</html>

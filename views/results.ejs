@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+  <% for(let i = 0; i < users.length; i++) { %>
+    <% if(name.name==users[i].firstname || name.name==users[i].lastname){%>
+      <%=users[i].firstname %>
+      <%=users[i].lastname %>
+    </br>
+      <%=users[i].email %>
+    <%}%>
+  <%}%>
+</body>
+</html>
