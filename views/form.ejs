@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="utf-8">
+    	<title>Search</title>
+		<link rel="stylesheet" type="text/css" href="/css/style.css">
+   		<link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
 	</head>
 <body>
+	<div class="container">
+		<fieldset>
 	<form action="/form" method="POST">
- 		<input type="text" name="firstname" placeholder="firstname">
- 		<input type="text" name="lastname" placeholder="lastname">
- 		<input type="text" name="email" placeholder="email">
- 		<input type="submit" placeholder="Submit">
+ 		<input type="text" name="firstname" class="ghost-input" placeholder="firstname">
+ 		<input type="text" name="lastname" class="ghost-input" placeholder="lastname">
+ 		<input type="text" name="email" class="ghost-input" placeholder="email">
+ 		<input type="submit" class="ghost-button" placeholder="Submit">
+ 	</form>
+ </fieldset>
 </body>
 </html>
