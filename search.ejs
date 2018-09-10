@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+    	<title>Search</title>
+		<link rel="stylesheet" type="text/css" href="/css/style.css">
+    	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+	</head>
+<body>
+	<ul>
+	  <li><a href="/">Home</a></li>
+	  <li><a class="active" href="/search">Search Users</a></li>
+	  <li><a href="/form">Add Users</a></li>
+	  <li><a href="/users">List of Users</a></li>
+	</ul>
+
+<div style="margin-left:25%;padding:1px 16px;height:1000px;">
+	<div class="container">
+		<fieldset>
+			<form action="/search" method="POST">
+ 				<input type="text" name="name" class="ghost-input" placeholder="What's your name?">
+ 				<input type="submit" class="ghost-button" placeholder="Submit">
+ 			</form>
+ 		</fieldset>
+ 	</div>
+</body>
+</html>
+
+

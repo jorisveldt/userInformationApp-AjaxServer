@@ -24,6 +24,12 @@ app.get("/users", function(req, res) {
   res.render("users", {users: users});
 });
 
+//point to the index.ejs as homepage
+app.get('/', (req,res) => {
+  res.render('index')
+})
+
+
 //point to the page with a search bar
 app.get('/search', (req,res) => {
 	res.render('search')
