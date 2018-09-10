@@ -7,6 +7,14 @@
     	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
 	</head>
 <body>
+	<ul>
+	  <li><a href="/">Home</a></li>
+	  <li><a href="/search">Search Users</a></li>
+	  <li><a href="/form">Add Users</a></li>
+	  <li><a class="active" href="/users">List of Users</a></li>
+	</ul>
+
+<div style="margin-left:25%;padding:1px 16px;height:1000px;">
 	<div class="container">
 	<% for(let i = 0; i < users.length; i++) { %>
 		<p>User: <%= i + 1 %><br>
