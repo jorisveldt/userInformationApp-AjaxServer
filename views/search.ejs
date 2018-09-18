@@ -5,6 +5,8 @@
     	<title>Search</title>
 		<link rel="stylesheet" type="text/css" href="/css/style.css">
     	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+    	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
 	</head>
 <body>
 	<ul>
@@ -18,11 +20,38 @@
 	<div class="container">
 		<fieldset>
 			<form action="/search" method="POST">
- 				<input type="text" name="name" class="ghost-input" placeholder="What's your name?">
+ 				<input type="text" name="name" class="ghost-input" placeholder="What's your name?" id="target" autocomplete="off">
  				<input type="submit" class="ghost-button" placeholder="Submit">
  			</form>
+ 			<ul id="user-info">Nothing has been searched yet...</ul>
  		</fieldset>
  	</div>
+ </div>
+ 	
+<script type="text/javascript"> 
+	$( "#target" ).keyup($.debounce(300, function() {
+    const users = $(this).val().toLowerCase()
+    $.get('https://raw.githubusercontent.com/jorisveldt/userinformationapp/master/users.json').done(function(response){
+    if(response.Error){
+      console.log('too many results')
+    }
+    else{ 
+      console.log(`response ${response}`)
+      let data = JSON.parse(response);
+      $('#user-info').empty()
+      data.forEach(element => {
+        if(element.firstname.toLowerCase().includes(users)){
+        	$('#user-info').append(`<li> ${element.firstname} ${element.lastname} ${element.email}</li>`)
+        } else if (element.lastname.toLowerCase().includes(users)){
+     		$('#user-info').append(`<li> ${element.firstname} ${element.lastname} ${element.email}</li>`)
+     	} else if (element.email.toLowerCase().includes(users)){
+     		$('#user-info').append(`<li> ${element.firstname} ${element.lastname} ${element.email}</li>`)
+     	}
+      });
+    }
+  });
+}));
+</script>
 </body>
 </html>
 
