@@ -19,9 +19,7 @@
 <div style="margin-left:25%;padding:1px 16px;height:1000px;">
 	<div class="container">
 		<fieldset>
-			<form action="/search" method="POST">
  				<input type="text" name="name" class="ghost-input" placeholder="What's your name?" id="target" autocomplete="off">
- 				<input type="submit" class="ghost-button" placeholder="Submit">
  			</form>
  			<ul id="user-info">Nothing has been searched yet...</ul>
  		</fieldset>
@@ -29,30 +27,20 @@
  </div>
  
 <script type="text/javascript"> 
-  //debounce is so nice to use!
-	$( "#target" ).keyup($.debounce(300, function() {
+$( "#target" ).keyup($.debounce(300, function(){
     const users = $(this).val().toLowerCase()
-    $.get('https://raw.githubusercontent.com/jorisveldt/userinformationapp/master/users.json').done(function(response){
-    if(response.Error){
-      console.log('too many results')
-    }
-    //just a note!
-    else{ 
-      console.log(`response ${response}`)
-      let data = JSON.parse(response);
-      $('#user-info').empty()
-      data.forEach(element => {
-        if(element.firstname.toLowerCase().includes(users)){
-        	$('#user-info').append(`<li> ${element.firstname} ${element.lastname} ${element.email}</li>`)
-        } else if (element.lastname.toLowerCase().includes(users)){
-     		$('#user-info').append(`<li> ${element.firstname} ${element.lastname} ${element.email}</li>`)
-     	} else if (element.email.toLowerCase().includes(users)){
-     		$('#user-info').append(`<li> ${element.firstname} ${element.lastname} ${element.email}</li>`)
-     	}
-      });
-    }
-  });
-}));
+    $.get('/search-result', {data: users}).done(function(response){
+      $('#user-info').empty();
+      response.userinfo.forEach(user =>{
+        $('#user-info').append(`<p>${user.firstname} ${user.lastname} <br> <br> ${user.email}<p>`)
+      })
+     
+    })
+    .fail((error)=>{
+    console.log('error: '+JSON.stringify(error))
+    })
+  })
+);
 </script>
 </body>
 </html>
